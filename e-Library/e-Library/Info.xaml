@@ -1,0 +1,203 @@
+﻿<Window x:Class="e_Library.Info"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:e_Library"
+        mc:Ignorable="d"
+        Background="#333"
+        Title="Info" Height="694.8" Width="1196" Loaded="Window_Loaded">
+    <Grid>
+        <Grid.Resources>
+            <Style TargetType="{x:Type Label}">
+                <Setter Property="FontSize" Value="42"/>
+                <Setter Property="FontFamily" Value="./#Beyond Wonderland"/>
+                <Setter Property="Foreground">
+                    <Setter.Value>
+                        <LinearGradientBrush EndPoint="1,1" StartPoint="0,0">
+                            <GradientStop Color="#FF97E9E9" Offset="1"/>
+                            <GradientStop Color="#FF2CC8C8"/>
+                        </LinearGradientBrush>
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="Margin" Value="10"/>
+                <Setter Property="HorizontalAlignment" Value="Center"/>
+            </Style>
+        </Grid.Resources>
+        <TabControl Margin="6,6,9.6,9.6" Grid.ColumnSpan="4" >
+            <TabItem Header="База данных" Width="100" Height="40">
+                
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="900" />
+                        <ColumnDefinition Width="auto"/>
+                        
+                    </Grid.ColumnDefinitions>
+                    <StackPanel >
+                        <DataGrid x:Name="dataGrid1" Margin="5"  Width="auto" CanUserAddRows="False" 
+                                  >
+                            
+                            <DataGrid.Columns>
+                                <DataGridTemplateColumn Header="Удалить">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Button Content="Delete" Margin="5" Padding="3" Click="Button_Click_1"></Button>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                                
+                                    <DataGridTemplateColumn Header="Обновить">
+                                        <DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate >
+                                                <Button Content="Update" Margin="5" Padding="3"
+                                                        ></Button>
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellTemplate>
+                                    </DataGridTemplateColumn>
+                               
+                            </DataGrid.Columns>
+                            
+                        </DataGrid>
+                    </StackPanel>
+                    <StackPanel Grid.Column="2">
+                        <Label Content="Фильтр" FontSize="24" HorizontalAlignment="Center"></Label>
+                        <ComboBox x:Name="comboBoxFilter" Margin="20,0,0,20">
+                            <ComboBoxItem Content="Имя" IsSelected="True"/>
+                            <ComboBoxItem Content="Автор" />
+                            <ComboBoxItem Content="Редакция"/>
+                            <ComboBoxItem Content="Год издания" />
+                            <ComboBoxItem Content="Страницы" />
+                            <ComboBoxItem Content="Категория" />
+                            <ComboBoxItem Content="Ограничение" />
+                        </ComboBox>
+                        <Grid Margin="20,0,0,0">
+                            <TextBox x:Name="textBox1" FontStyle="Italic" Padding="5,5,32,5" Width="200" Text="Найти..." TextChanged="textBox1_TextChanged"/>
+                            <Grid Height="28" Width="28" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,4,0">
+                                <Path Width="20.7781" Height="20.7781" Stretch="Fill" Fill="{StaticResource FillPath}" Data="{StaticResource magnifyStyle0}" />
+                            </Grid>
+                        </Grid>
+                        
+                    </StackPanel>
+                </Grid>
+                
+            </TabItem>
+
+            <TabItem Header="Библиотека" Width="100" Height="40">
+                <ScrollViewer HorizontalScrollBarVisibility="Auto" Margin="0,0,0,10" >
+                    <Grid x:Name="Grid1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition />
+                            
+
+                            
+                        </Grid.ColumnDefinitions>
+
+                        <StackPanel HorizontalAlignment="Center" Grid.ColumnSpan="1" Margin="25,0,24.6,0.2">
+
+
+                            <Label Content="Искать" />
+                            <GroupBox Header="Искать по" Margin="0,0,0,10" Height="auto" Padding="10" Width="auto">
+                                <StackPanel>
+
+                                    <RadioButton x:Name="name"  Margin="0,10" Content="Имени" IsChecked="True"/>
+                                    <RadioButton x:Name="author" Content="Автору"/>
+                                    <RadioButton x:Name="redac" Margin="0,10" Content="Редакции"/>
+                                    <RadioButton x:Name="year" Content="Году издания"/>
+                                    <RadioButton x:Name="pages" Margin="0,10" Content="Количеству страниц"/>
+                                    <RadioButton x:Name="category"  Content="Категориям"/>
+                                    <RadioButton x:Name="limit" Margin="0,10,0,10" Content="Ограничении в возрасте"/>
+
+                                </StackPanel>
+                            </GroupBox>
+                            <Grid>
+                                <TextBox x:Name="textBoxLibrary1" FontStyle="Italic" Padding="5,5,32,5" Width="200" Text="Найти..." TextChanged="textBoxLibrary1_TextChanged" MouseDoubleClick="textBoxLibrary1_MouseDoubleClick"/>
+                                <Grid Height="28" Width="28" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,4,0">
+                                    <Path Width="20.7781" Height="20.7781" Stretch="Fill" Fill="{StaticResource FillPath}" Data="{StaticResource magnifyStyle0}" />
+                                </Grid>
+                            </Grid>
+
+                            <ListView x:Name="listView1" Margin="10" Width="180" Loaded="listView1_Loaded" >
+                                <ListView.View>
+                                    <GridView >
+                                        <GridViewColumn  Header="Список" Width="165"/>
+
+                                    </GridView>
+
+                                </ListView.View>
+
+                            </ListView>
+                        </StackPanel>
+                        <StackPanel x:Name="StackPanel1" Grid.Column="2" Margin="0.4,0,0.2,0.2">
+                            <Grid>
+                                <Label Content="Список книг" FontSize="20"></Label>
+                            </Grid>
+                            <WrapPanel x:Name="WrapPanel1" MaxWidth="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType={x:Type ScrollViewer}, Mode=FindAncestor}}" >
+                                <WrapPanel.Resources>
+                                    <Style TargetType="{x:Type Border}">
+                                        <Setter Property="Background">
+                                            <Setter.Value>
+                                                <RadialGradientBrush>
+                                                    <RadialGradientBrush.RelativeTransform>
+                                                        <TransformGroup>
+                                                            <ScaleTransform CenterX="0.5" CenterY="0.5" ScaleX="1.804" ScaleY="0.743" />
+                                                            <SkewTransform CenterX="0.5" CenterY="0.5" />
+                                                            <RotateTransform CenterX="0.5" CenterY="0.5" />
+                                                            <TranslateTransform Y="0.6" />
+                                                        </TransformGroup>
+                                                    </RadialGradientBrush.RelativeTransform>
+                                                    <GradientStop Color="Transparent" Offset="0.209" />
+                                                    <GradientStop Color="Transparent" Offset="1" />
+                                                    <GradientStop Color="Transparent" Offset="0" />
+                                                </RadialGradientBrush>
+                                            </Setter.Value>
+                                        </Setter>
+                                        <Setter Property="BorderBrush" Value="{StaticResource FillPath}" />
+                                        <Setter Property="BorderThickness" Value="2"/>
+                                        <Setter  Property="Width" Value="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType={x:Type Canvas}, Mode=FindAncestor}}"/>
+                                        <Setter Property="Height" Value="{Binding ActualHeight, RelativeSource={RelativeSource AncestorType={x:Type Canvas}, Mode=FindAncestor}}"/>
+                                        <Setter Property="ToolTip" Value="{Binding Name, RelativeSource={RelativeSource AncestorType={x:Type Canvas}, Mode=FindAncestor}}" />
+                                        <Style.Triggers>
+                                            <EventTrigger RoutedEvent="UIElement.MouseMove">
+                                                <BeginStoryboard>
+                                                    <Storyboard>
+                                                        <ColorAnimation Duration="0:0:0.2"
+                                                            Storyboard.TargetProperty="(BorderBrush).(SolidColorBrush.Color)"
+                                                            To="#FF88C9EB"/>
+                                                        <ColorAnimation Duration="0:0:0.2" Storyboard.TargetProperty="(Background).(GradientBrush.GradientStops)[2].(GradientStop.Color)" To="#FF8DDFFB"/>
+                                                        <ColorAnimation Duration="0:0:0.2" Storyboard.TargetProperty="(Background).(GradientBrush.GradientStops)[1].(GradientStop.Color)" To="#0098DAFF"/>
+                                                        <ColorAnimation Duration="0:0:0.2" Storyboard.TargetProperty="(Background).(GradientBrush.GradientStops)[0].(GradientStop.Color)" To="#FF50D2F3"/>
+                                                    </Storyboard>
+                                                </BeginStoryboard>
+                                            </EventTrigger>
+                                            <EventTrigger RoutedEvent="Mouse.MouseLeave">
+                                                <BeginStoryboard>
+                                                    <Storyboard>
+                                                        <ColorAnimation Duration="0:0:0.2"
+                                                            Storyboard.TargetProperty="(BorderBrush).(SolidColorBrush.Color)"
+                                                            To="#0cbbd6"/>
+                                                        <ColorAnimation Duration="0:0:0.2" Storyboard.TargetProperty="(Background).(GradientBrush.GradientStops)[2].(GradientStop.Color)" To="Transparent"/>
+                                                        <ColorAnimation Duration="0:0:0.2" Storyboard.TargetProperty="(Background).(GradientBrush.GradientStops)[1].(GradientStop.Color)" To="Transparent"/>
+                                                        <ColorAnimation Duration="0:0:0.2" Storyboard.TargetProperty="(Background).(GradientBrush.GradientStops)[0].(GradientStop.Color)" To="Transparent"/>
+                                                    </Storyboard>
+                                                </BeginStoryboard>
+                                            </EventTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </WrapPanel.Resources>
+
+
+                       
+                            </WrapPanel>
+                        </StackPanel>
+                        <Border Grid.Column="2" BorderBrush="#000" BorderThickness="1,0,1,1" Margin="1.4,0,0.2,-0.8">
+                            <Border BorderBrush="Black" BorderThickness="1"/>
+                        </Border>
+                    </Grid>
+                    
+                </ScrollViewer>
+            </TabItem>
+            
+        </TabControl>
+    </Grid>
+</Window>
